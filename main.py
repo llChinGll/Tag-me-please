@@ -14,9 +14,13 @@ dic = getdic()
 KB = []
 for t in tags:
 	print "=== process ",t," ==="
+	#print data[t]
 	KB.append(train(data[t],dic))
 
-query(KB,["แมว","กิน","ข้าว","ของ","ฉัน","ไป","มาก"],len(dic))
+for k,v in KB[5].iteritems():
+	if v!=0:
+		print k," => ",v
+query(KB,[dic[1]],len(dic))
 
 dm = demo()
 train(dm,dic)
