@@ -2,6 +2,7 @@
 
 import json	
 import httplib
+from word import *
 
 dic=[]
 flagdic= True
@@ -35,8 +36,9 @@ def input(tag):
 	#flagdic = True
 	data = []
 	for d in obj[0]["data"]:
-		gendic(d["cut"])
-		data.append(d["cut"])
+		w = cutword(d["cut"])
+		gendic(w)
+		data.append(w)
 	return data
 
 def demo():
