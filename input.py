@@ -37,6 +37,7 @@ def input(tag):
 	data = []
 	for d in obj[0]["data"]:
 		w = cutword(d["cut"])
+		w = stopword(w)
 		gendic(w)
 		data.append(w)
 	return data
