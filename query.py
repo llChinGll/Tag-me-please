@@ -17,10 +17,10 @@ def query(kblist,datalist,vocab):
 	allprob = []
 	for class_dict in kblist:
 		prob = 1.0
-		total = len(class_dict.keys())+vocab
+		total = len(class_dict.keys())+0.1*vocab
 		for key_in_class in datadict.keys():
 			class_val = class_dict[key_in_class]
-			prob = prob*(class_val+1)/total
+			prob = prob*(class_val+0.1)/total
 		allprob.append(prob)
 	norm = sum(allprob)
 	#print allprob
