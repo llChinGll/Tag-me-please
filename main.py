@@ -8,7 +8,8 @@ tags = ["อาหาร","สัตว์เลี้ยง","ฟุตบอ�
 dic = getdic()
 KB = learn(tags)
 data = inputdata()
-prob = query(KB,data,len(dic))
+cutcut = cutdic(dic,data)
+prob = query(KB,cutcut[0],len(dic))
 order = [0,1,2]
 swap = True
 while swap:
@@ -23,7 +24,8 @@ while swap:
 			tags[i]=tags[i+1]
 			tags[i+1] =tmp
 			swap = True
-			
+relai = (1 - cutcut[1]*1.0/len(cutcut[0]))*100
+print "realiable "+str(relai)+"%"
 print "1st : ",tags[0]
 print "2nd : ",tags[1]
 print "3rd : ",tags[2]

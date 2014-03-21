@@ -49,7 +49,7 @@ def getKB():
 def learn(tags):
     	
     if isupdate():
-       print "uptodate"
+       #print "uptodate"
        return getKB()
 
     f = openfile("w")

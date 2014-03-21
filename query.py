@@ -6,12 +6,12 @@ def query(kblist,datalist,vocab):
 		s += " "+i 
 	#print s
 	doclen = len(datalist)
-	print "doclen=", doclen
+	#print "doclen=", doclen
 	datadict = {}
 	#datalist = cutword(datalist)
 	#datalist = stopword(datalist)
 	for i in datalist:
-		i = i.encode('utf-8')
+		
 		if datadict.has_key(i):
 			tmp = datadict.get(i)
 			upd = { i:tmp+1 }
@@ -26,7 +26,7 @@ def query(kblist,datalist,vocab):
 		prob = 1.0
 		total = len(class_dict.keys())+0.01*vocab
 		for key_in_class in datadict.keys():
-			print key_in_class
+			#print key_in_class
 			#key_in_class = key_in_class.encode('utf-8')
 			class_val = class_dict[key_in_class]
 			prob = prob*(class_val+0.01)*((datadict[key_in_class]+0.1)/(doclen+1))/total

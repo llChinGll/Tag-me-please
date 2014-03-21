@@ -57,6 +57,21 @@ def inputdata():
 	result = myKUCut.tokenize([data])
 	return result[0][0]
 
+def cutdic(dic,datainput):
+	cut=[]
+	cutinput=[]
+	for i in datainput:
+		i = i.encode("utf-8")
+		if not (i in dic):
+			#print i
+			if cut.count(i)==0:
+				cut.append(i)
+
+		else:
+			if cutinput.count(i)==0:
+				cutinput.append(i)
+	countnull=len(cut)
+	return (cutinput,countnull)
 
 def isupdate():
 	conn = httplib.HTTPConnection("ml.curve.in.th")
