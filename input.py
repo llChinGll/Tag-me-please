@@ -4,6 +4,7 @@ import os
 import json	
 import httplib
 from word import *
+from time import gmtime, strftime
 
 sys.path.append(os.path.abspath("../clone-kucut"))
 sys.path.append(os.path.abspath("clone-kucut"))
@@ -67,3 +68,20 @@ def cutdic(dic,datainput):
 				cutinput.append(i)
 	countnull=len(cut)
 	return (cutinput,countnull)
+
+
+def isupdate():
+	conn = httplib.HTTPConnection("ml.curve.in.th")
+
+	time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+	print time
+	conn.request("GET", "/update/"+time)
+	r1 = conn.getresponse()
+	#print r1.status, r1.reason
+	data = r1.read()
+	conn.close()
+	if data == "uptodate":
+		return True
+	else:
+		return False
+
