@@ -1,10 +1,16 @@
 #-*- coding:utf-8 -*-
+from word import *
 def query(kblist,datalist,vocab):
 	s=""
 	for i in datalist:
 		s += " "+i 
 	#print s
+	doclen = len(datalist)
+	print "doclen="
+	print doclen
 	datadict = {}
+	#datalist = cutword(datalist)
+	#datalist = stopword(datalist)
 	for i in datalist:
 		if datadict.has_key(i):
 			tmp = datadict.get(i)
@@ -18,11 +24,12 @@ def query(kblist,datalist,vocab):
 	cc = 0
 	for class_dict in kblist:
 		prob = 1.0
-		total = len(class_dict.keys())+vocab
+		total = len(class_dict.keys())+0.01*vocab
 		for key_in_class in datadict.keys():
 			key_in_class =  key_in_class.encode('utf-8')
 			class_val = class_dict[key_in_class]
-			prob = prob*(class_val+1)/total
+			prob = prob*(class_val+0.01)*((datadict[key_in_class]+0.1)/(doclen+1))/total
+			#prob = prob*(class_val+0.1)/total
 		allprob.append(prob)
 		cc+=1
 	norm = sum(allprob)
