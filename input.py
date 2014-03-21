@@ -54,3 +54,16 @@ def inputdata():
 	myKUCut = KUCut()
 	result = myKUCut.tokenize([data])
 	return result[0][0]
+
+def cutdic(dic,datainput):
+	cut=[]
+	cutinput=[]
+	for i in datainput:
+		if dic.count(i)==0:
+			if cut.count(i)==0:
+				cut.append(i)
+		else:
+			if cutinput.count(i)==0:
+				cutinput.append(i)
+	countnull=len(cut)
+	return (cutinput,countnull)
