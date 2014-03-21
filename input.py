@@ -3,6 +3,7 @@ import sys
 import os
 import json	
 import httplib
+from word import *
 
 sys.path.append(os.path.abspath("../clone-kucut"))
 sys.path.append(os.path.abspath("clone-kucut"))
@@ -40,8 +41,10 @@ def inputtrain(tag):
 	#flagdic = True
 	data = []
 	for d in obj[0]["data"]:
-		gendic(d["cut"])
-		data.append(d["cut"])
+		w = cutword(d["cut"])
+		w = stopword(w)
+		gendic(w)
+		data.append(w)
 	return data
 
 def inputdata():
