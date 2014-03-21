@@ -20,3 +20,6 @@ def stopword(data):
 		if stopword.count(i)==0:
 			newdata.append(i)
 	return newdata
+
+
+#print stopword(["ก็"])

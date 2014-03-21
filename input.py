@@ -3,8 +3,8 @@ import sys
 import os
 import json	
 import httplib
-from word import *
 from time import gmtime, strftime
+from word import *
 
 sys.path.append(os.path.abspath("../clone-kucut"))
 sys.path.append(os.path.abspath("clone-kucut"))
@@ -46,6 +46,7 @@ def inputtrain(tag):
 		w = stopword(w)
 		gendic(w)
 		data.append(w)
+
 	return data
 
 def inputdata():
@@ -56,25 +57,14 @@ def inputdata():
 	result = myKUCut.tokenize([data])
 	return result[0][0]
 
-def cutdic(dic,datainput):
-	cut=[]
-	cutinput=[]
-	for i in datainput:
-		if dic.count(i)==0:
-			if cut.count(i)==0:
-				cut.append(i)
-		else:
-			if cutinput.count(i)==0:
-				cutinput.append(i)
-	countnull=len(cut)
-	return (cutinput,countnull)
-
 
 def isupdate():
 	conn = httplib.HTTPConnection("ml.curve.in.th")
-
-	time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
-	print time
+	f = open("log.in",'r')
+	time = f.readline()
+	f.close()
+	
+	print "lastupdate:",time
 	conn.request("GET", "/update/"+time)
 	r1 = conn.getresponse()
 	#print r1.status, r1.reason
@@ -83,5 +73,9 @@ def isupdate():
 	if data == "uptodate":
 		return True
 	else:
+		f = open("log.in",'w')
+		time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+		f.write(time)
+		f.close()
 		return False
 

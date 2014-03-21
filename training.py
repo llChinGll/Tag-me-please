@@ -47,7 +47,7 @@ def getKB():
 	return KB
 
 def learn(tags):
-	
+    	
     if isupdate():
        print "uptodate"
        return getKB()
